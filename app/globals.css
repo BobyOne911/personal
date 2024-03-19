@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+ 
+body {
+    background-image: url("/bg.svg"); /* Replace with your image path */
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    height: 100vh; /* Optional, sets body height to 100% viewport height */
+    margin: 0;
+    padding: 0;
+  }
