@@ -1,7 +1,9 @@
 import Articles from "@/components/Articles";
 import Banner from "@/components/Banner";
+import Header from "@/components/Header";
 import getArticles from "@/lib/action";
-import Image from "next/image";
+import { main } from "@/lib/style";
+
 
 
 export default async function Home() {
@@ -9,11 +11,8 @@ export default async function Home() {
   const data = await posts.items;
   return (
     <>
-    <main className="max-w-[90%] md:max-w-5xl lg:max-w-7xl mx-auto">
-      <header className="flex py-5 ">
-        <h1 className="text-xl md:text-2xl font-bold">Lentzy R. Philias</h1>
-        <Image src="/in.svg" className="ml-auto md:w-7 md:h-7" alt="in" width={24} height={24} />
-      </header>
+    <main className={main}>
+      <Header />
       <Banner />
       <Articles />
       

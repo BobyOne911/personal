@@ -1,27 +1,26 @@
-
 import React from "react";
 import { Badge } from "./ui/badge";
 import Image from "next/image";
 import { ArrowUpRightSquareIcon } from "lucide-react";
 import Link from "next/link";
 import Carousell from "./Carousel";
-
-
+import { Separator } from "./ui/separator";
+import Quote from "./Quote";
 
 function Banner() {
   const category = ["New", "intelligence artificial", "aws", "cloud", "tech"];
   return (
     <section className="flex flex-col md:flex-row md:gap-10">
-      <div className="md:pt-10">
+      <div className="md:pt-10 md:w-1/5">
         {category.map((item, index) => (
-          <Badge
-            key={index}
-            className="mr-2 my-2 md:text-lg"
-            variant="outline"
-          >
+          <Badge key={index} className="mr-2 my-2 md:text-lg" variant="outline">
             {item}
           </Badge>
         ))}
+        <div className="p-3">
+          <h2 className="font-black mb-3 text-xl">Quote</h2>
+          <Quote />
+        </div>
       </div>
       <div className="my-7 md:w-3/5">
         <Image
@@ -31,31 +30,56 @@ function Banner() {
           className="w-full h-auto"
           alt="banner"
         />
-        <h2 className="text-xl mt-4 font-black w-[90%] capitalize">
+        <Badge className="mr-2 md:text-md my-3" variant="outline">
+          Tech news
+        </Badge>
+        <h2 className="text-xl md:text-3xl  font-black w-[90%] capitalize">
           Apple’s AI ambitions could include Google or OpenAI
         </h2>
       </div>
       <div className="my-5">
         <h3 className="text-lg font-black Capitalize mb-5">Top stories</h3>
         <div className="hidden md:block">
-          <Link href="/" className="block my-5">
-            <h3 className="font-bold">
-              Apple’s AI ambitions could include Google or OpenAI{" "}
-              <ArrowUpRightSquareIcon className="w-5 h-5 inline" />
-            </h3>
-          </Link>
-          <Link href="/" className="block my-5">
-            <h3 className="font-bold">
-              Apple’s AI ambitions could include Google or OpenAI{" "}
-              <ArrowUpRightSquareIcon className="w-5 h-5 inline" />
-            </h3>
-          </Link>
-          <Link href="/" className="block my-5">
-            <h3 className="font-bold">
-              Apple’s AI ambitions could include Google or OpenAI{" "}
-              <ArrowUpRightSquareIcon className="w-5 h-5 inline" />
-            </h3>
-          </Link>
+          <div className="my-5">
+            <Link href="/" className="block">
+              <h3 className="font-bold">
+                Apple’s AI ambitions could include Google or OpenAI{" "}
+                <ArrowUpRightSquareIcon className="w-5 h-5 inline" />
+              </h3>
+            </Link>
+            <Separator />
+            <h3>Lentzy R Philias, 03/20/2024</h3>
+          </div>
+          <div className="my-5">
+            <Link href="/" className="block">
+              <h3 className="font-bold">
+                Apple’s AI ambitions could include Google or OpenAI{" "}
+                <ArrowUpRightSquareIcon className="w-5 h-5 inline" />
+              </h3>
+            </Link>
+            <Separator />
+            <h3>Lentzy R Philias, 03/20/2024</h3>
+          </div>
+          <div className="my-5">
+            <Link href="/" className="block">
+              <h3 className="font-bold">
+                Apple’s AI ambitions could include Google or OpenAI{" "}
+                <ArrowUpRightSquareIcon className="w-5 h-5 inline" />
+              </h3>
+            </Link>
+            <Separator />
+            <h3>Lentzy R Philias, 03/20/2024</h3>
+          </div>
+          <div className="my-5">
+            <Link href="/" className="block">
+              <h3 className="font-bold">
+                Apple’s AI ambitions could include Google or OpenAI{" "}
+                <ArrowUpRightSquareIcon className="w-5 h-5 inline" />
+              </h3>
+            </Link>
+            <Separator />
+            <h3>Lentzy R Philias, 03/20/2024</h3>
+          </div>
         </div>
         <Carousell />
       </div>
