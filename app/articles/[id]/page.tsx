@@ -8,6 +8,8 @@ import Image from "next/image";
 import React from "react";
 import client from "@/contentful";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+import Footer from "@/components/Footer";
+import topArticles from "@/lib/aside.action";
 
 async function Article({params}: any) {
   const {id } = params
@@ -15,10 +17,11 @@ async function Article({params}: any) {
   const data = await client.getEntries({
     content_type: 'blogPost', // Replace with your actual content type
     // other options...
-  }); 
+  });
+  const top = await topArticles(); 
   const article = data.items.find((item: any) => item.fields.title === title);
-  console.log(article.fields.article)
   return (
+    <>
     <main className={main}>
       <Header />
    
@@ -53,16 +56,28 @@ async function Article({params}: any) {
             </Button>
             <h2 className="text-lg font-black Capitalize my-3">Top stories</h2>
             <div className="hidden md:block ">
-              <Aside_article />
-              <Aside_article />
-              <Aside_article />
-              <Aside_article />
+            {
+            top.items.map((item: any) => (
+              <Aside_article
+                key={item.sys.id}
+                title={item.fields.title}
+                author={item.fields.author}
+                date_publication={item.sys.createdAt}
+              />
+            ))
+          }
+              
             </div>
-            <Carousell />
+            
+              <Carousell fields={top.items} />
+          
+            
           </div>
         </div>
       </div>
     </main>
+    <Footer />
+    </>
   );
 }
 

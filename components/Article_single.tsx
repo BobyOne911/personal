@@ -1,16 +1,31 @@
 import Image from "next/image";
-function Article_single() {
+import  moment  from "moment";
+function Article_single({
+  title,
+  author,
+  date_publication,
+  image,
+  description,
+}: simple_articles_props) {
+ 
   return (
-    <div className="my-7 mx-auto md:w-2/7">
-      <Image
-        src="https://images.unsplash.com/photo-1532993680872-98b088e2cacd?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-        width={500}
-        height={300}
-        className="w-full h-32 object-cover"
-        alt="banner"
-      />
-      <h2 className="my-3 font-bold text-lg w-[90%]">Data Lake Architecture with Amazon S3 and Glue:</h2>
-      <p className="text-sm">Write about designing a data lake using Amazon S3 for storage and AWS Glue for data cataloging and ETL (Extract, Transform, Load) processes.</p>
+    <div className="my-7 md:flex  md:gap-5 mx-auto w-full md:w-2/7">
+      <div className="w-full md:w-2/5">
+        <Image
+          src={`https:${image}`}
+          width={500}
+          height={300}
+          className="w-full h-32 md:w-auto md:h-full object-cover"
+          alt="banner"
+        />
+      </div>
+      <div className="w-full md:w-3/5">
+        <h2 className="my-3 font-bold text-lg w-[90%]">{title}</h2>
+        <p className="text-sm">{description}</p>
+        <span className="block my-2 text-slate-600">
+          By: <strong>{author}</strong>, {moment(date_publication).fromNow()}  
+        </span>
+      </div>
     </div>
   );
 }

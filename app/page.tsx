@@ -1,5 +1,6 @@
 import Articles from "@/components/Articles";
 import Banner from "@/components/Banner";
+import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import getArticles from "@/lib/action";
 import { main } from "@/lib/style";
@@ -11,8 +12,9 @@ export default async function Home() {
   const data = await posts.items;
   return (
     <>
+    
     <main className="w-[90%] md:w-5xl lg:w-7xl mx-auto">
-      <Header />
+    <Header />
       <Banner />
       <Articles />
       
@@ -24,7 +26,7 @@ export default async function Home() {
         ))}
       </ul> */}
     </main>
-    <footer className="mt-auto border-t w-full text-center p-5 text-slate-500"> © 2024 Lentzy R. Philias </footer>
+    <Footer />
     </>
   );
 }

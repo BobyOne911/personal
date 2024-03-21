@@ -6,6 +6,7 @@ import Quote from "./Quote";
 import Aside_article from "./Aside_article";
 import client from "@/contentful";
 import Link from "next/link";
+import topArticles from "@/lib/aside.action";
 
 async function Banner() {
   const highlight = await client.getEntries({
@@ -14,7 +15,8 @@ async function Banner() {
     "fields.highlight": true,
     limit: 1,
   })
-  console.log(highlight.items[0].fields.image)
+  
+  const top = await topArticles();
   const category = ["New", "intelligence artificial", "aws", "cloud", "tech"];
   return (
     <section className="flex flex-col md:flex-row md:gap-10">
@@ -24,7 +26,7 @@ async function Banner() {
             {item}
           </Badge>
         ))}
-        <div className="p-3">
+        <div className="p-3 hidden md:block">
           <h2 className="font-black mb-3 text-xl">Quote</h2>
           <Quote />
         </div>
@@ -47,12 +49,18 @@ async function Banner() {
       <div className="my-5">
         <h3 className="text-lg font-black Capitalize mb-5">Top stories</h3>
         <div className="hidden md:block">
-          <Aside_article />
-          <Aside_article />
-          <Aside_article />
-          <Aside_article />
+          {
+            top.items.map((item: any) => (
+              <Aside_article
+                key={item.sys.id}
+                title={item.fields.title}
+                author={item.fields.author}
+                date_publication={item.sys.createdAt}
+              />
+            ))
+          }
         </div>
-        <Carousell />
+        <Carousell fields={top.items} />
       </div>
     </section>
   );

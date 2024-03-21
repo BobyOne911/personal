@@ -3,19 +3,25 @@ import { ArrowUpRightSquareIcon } from "lucide-react";
 import Link from "next/link";
 import { Separator } from "./ui/separator";
 import { Badge } from "./ui/badge";
+import moment from "moment";
 
-function Aside_article() {
+interface Aside_articleProps {
+  title: string;
+  author: string;
+  date_publication: string;
+}
+function Aside_article({ title, author, date_publication }: Aside_articleProps) {
   return (
     <div className="my-5">
-      <Link href="/" className="block">
+      <Link href={`/articles/${title}`} className="block">
         <Badge className="text-slate-600">AI</Badge>
-        <h3 className="font-bold">
-          Apple’s AI ambitions could include Google or OpenAI{" "}
+        <h3 className="font-bold text-lg">
+          {title}
           <ArrowUpRightSquareIcon className="w-5 h-5 inline" />
         </h3>
       </Link>
-      <Separator />
-      <h3>Lentzy R Philias, 03/20/2024</h3>
+      <Separator className="my-1" />
+      <h3 className="text-sm text-slate-600"><strong>{author}</strong>, {moment(date_publication).fromNow()}</h3>
     </div>
   );
 }
