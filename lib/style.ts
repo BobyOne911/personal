@@ -1,2 +1,2 @@
 
-export const main = "max-w-[90%] md:max-w-5xl lg:max-w-7xl mx-auto";
+export const main = "w-[90%] md:w-5xl lg:w-7xl mx-auto";

@@ -11,7 +11,7 @@ export default async function Home() {
   const data = await posts.items;
   return (
     <>
-    <main className={main}>
+    <main className="w-[90%] md:w-5xl lg:w-7xl mx-auto">
       <Header />
       <Banner />
       <Articles />

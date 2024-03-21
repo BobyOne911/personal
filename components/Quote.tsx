@@ -20,7 +20,7 @@ function Quote() {
 
             {
                 quote.map((item, index) => (
-                    <CarouselItem>
+                    <CarouselItem key={index}>
                         <h3 className="italic">{item.quote}</h3>
                         <span className="font-bold mt-2">{item.author}</span>
                     </CarouselItem>

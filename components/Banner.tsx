@@ -1,13 +1,20 @@
 import React from "react";
 import { Badge } from "./ui/badge";
 import Image from "next/image";
-import { ArrowUpRightSquareIcon } from "lucide-react";
-import Link from "next/link";
 import Carousell from "./Carousel";
-import { Separator } from "./ui/separator";
 import Quote from "./Quote";
+import Aside_article from "./Aside_article";
+import client from "@/contentful";
+import Link from "next/link";
 
-function Banner() {
+async function Banner() {
+  const highlight = await client.getEntries({
+    content_type: "blogPost",
+    order: "-sys.createdAt",
+    "fields.highlight": true,
+    limit: 1,
+  })
+  console.log(highlight.items[0].fields.image)
   const category = ["New", "intelligence artificial", "aws", "cloud", "tech"];
   return (
     <section className="flex flex-col md:flex-row md:gap-10">
@@ -24,62 +31,26 @@ function Banner() {
       </div>
       <div className="my-7 md:w-3/5">
         <Image
-          src="https://images.unsplash.com/photo-1532993680872-98b088e2cacd?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          src={`https:${highlight.items[0].fields.image.fields.file.url}`} 
           width={500}
           height={300}
           className="w-full h-auto"
           alt="banner"
         />
         <Badge className="mr-2 md:text-md my-3" variant="outline">
-          Tech news
+          {highlight.items[0].fields.author}
         </Badge>
         <h2 className="text-xl md:text-3xl  font-black w-[90%] capitalize">
-          Apple’s AI ambitions could include Google or OpenAI
+          <Link href={`/articles/${highlight.items[0].fields.title}`}>{highlight.items[0].fields.title}</Link>
         </h2>
       </div>
       <div className="my-5">
         <h3 className="text-lg font-black Capitalize mb-5">Top stories</h3>
         <div className="hidden md:block">
-          <div className="my-5">
-            <Link href="/" className="block">
-              <h3 className="font-bold">
-                Apple’s AI ambitions could include Google or OpenAI{" "}
-                <ArrowUpRightSquareIcon className="w-5 h-5 inline" />
-              </h3>
-            </Link>
-            <Separator />
-            <h3>Lentzy R Philias, 03/20/2024</h3>
-          </div>
-          <div className="my-5">
-            <Link href="/" className="block">
-              <h3 className="font-bold">
-                Apple’s AI ambitions could include Google or OpenAI{" "}
-                <ArrowUpRightSquareIcon className="w-5 h-5 inline" />
-              </h3>
-            </Link>
-            <Separator />
-            <h3>Lentzy R Philias, 03/20/2024</h3>
-          </div>
-          <div className="my-5">
-            <Link href="/" className="block">
-              <h3 className="font-bold">
-                Apple’s AI ambitions could include Google or OpenAI{" "}
-                <ArrowUpRightSquareIcon className="w-5 h-5 inline" />
-              </h3>
-            </Link>
-            <Separator />
-            <h3>Lentzy R Philias, 03/20/2024</h3>
-          </div>
-          <div className="my-5">
-            <Link href="/" className="block">
-              <h3 className="font-bold">
-                Apple’s AI ambitions could include Google or OpenAI{" "}
-                <ArrowUpRightSquareIcon className="w-5 h-5 inline" />
-              </h3>
-            </Link>
-            <Separator />
-            <h3>Lentzy R Philias, 03/20/2024</h3>
-          </div>
+          <Aside_article />
+          <Aside_article />
+          <Aside_article />
+          <Aside_article />
         </div>
         <Carousell />
       </div>
