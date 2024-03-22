@@ -1,5 +1,6 @@
 import Image from "next/image";
 import  moment  from "moment";
+import Link from "next/link";
 function Article_single({
   title,
   author,
@@ -20,8 +21,8 @@ function Article_single({
         />
       </div>
       <div className="w-full md:w-3/5">
-        <h2 className="my-3 font-bold text-lg w-[90%]">{title}</h2>
-        <p className="text-sm">{description}</p>
+        <h2 className="my-3 font-bold text-lg w-[90%] text-pretty"><Link href={`/articles/${title}`}>{title}</Link></h2>
+        <p className="text-sm text-pretty line-clamp-3">{description}</p>
         <span className="block my-2 text-slate-600">
           By: <strong>{author}</strong>, {moment(date_publication).fromNow()}  
         </span>

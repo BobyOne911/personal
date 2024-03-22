@@ -10,13 +10,13 @@ import client from "@/contentful";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import Footer from "@/components/Footer";
 import topArticles from "@/lib/aside.action";
+import Link from "next/link";
 
 async function Article({params}: any) {
   const {id } = params
   const title = decodeURIComponent(id) as string;
   const data = await client.getEntries({
-    content_type: 'blogPost', // Replace with your actual content type
-    // other options...
+    content_type: 'blogPost', 
   });
   const top = await topArticles(); 
   const article = data.items.find((item: any) => item.fields.title === title);
@@ -26,11 +26,11 @@ async function Article({params}: any) {
       <Header />
    
       <div className="flex flex-col mb-10   md:flex-row-reverse md:gap-5 lg:gap-10">
-        <div className="w-full md:w-3/5 lg:4/5 mx-auto mt-20 md:mt-32">
+        <div className="w-full md:w-3/5 lg:4/5 mx-auto mt-5 md:mt-32">
         <Button variant="outline" className="my-5 rounded md:hidden">
-        <ArrowLeft className="w-5 h-5 inline mr-2" /> Back
+        <Link href="/"><ArrowLeft className="w-5 h-5 inline mr-2" /> Back</Link>
       </Button>
-          <h1 className="text-2xl font-black md:w-4/5 lg:w-3/5 md:text-4xl">
+          <h1 className="text-2xl font-black md:w-4/5 lg:w-3/5 md:text-4xl text-pretty">
             {article.fields.title}
           </h1>
           <span className="text-slate-500 mt-3 block md:my-6">
@@ -43,7 +43,7 @@ async function Article({params}: any) {
             className="w-full  md:w-4/5 lg:w-2/3 mt-3 h-auto"
             alt="banner"
           />
-          <div className="w-[90%] my-3 md:w-4/5 lg:w-2/3 md:text-lg md:my-10 personal_article">
+          <div className="w-[90%] my-3 md:w-4/5 lg:w-2/3 md:text-lg md:my-10 personal_article text-pretty">
           
             {documentToReactComponents(article.fields.article)}
             

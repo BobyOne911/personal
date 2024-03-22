@@ -6,9 +6,9 @@ async function Articles() {
   const articles = await getArticles();
   const list = articles.items;
   return (
-    <section className='my-5'>
-        <h2 className='font-bold text-lg text-center my-7'>Lately</h2>
-        <div className='w-full flex mx-auto flex-col md:flex-row md:gap-10 md:max-w-3xl flex-wrap'>
+    <section className='my-5 md:max-w-3xl mx-auto'>
+        <h2 className='font-bold text-lg my-7'>Lately</h2>
+        <div className='border-t w-full flex mx-auto flex-col md:flex-row md:gap-10 md:max-w-3xl flex-wrap'>
             {
                 list.map((item: any) => (
                     <Article_single
