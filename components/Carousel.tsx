@@ -10,7 +10,6 @@ import Link from "next/link";
 import { Separator } from "./ui/separator";
 
 function Carousell({fields}:top_articles_props) {
-  console.log(fields);
   return (
     <Carousel
       className="w-full md:hidden"
